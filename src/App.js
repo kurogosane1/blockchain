@@ -1,6 +1,6 @@
 //Importing the required packages
 import { BrowserRouter as Router } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import {
   Paper,
@@ -34,14 +34,34 @@ function App() {
   //Bring ing in the theme from the useStyles outside the function
   const classes = useStyles();
   //Createing the state where the style can be changed on click
-  const [dark, setDark] = useState(false);
+  const [darkMode, setDark] = useState(false);
+
+  //createing the theme
+  const preferTheme = createMuiTheme({
+    palette: {
+      type: darkMode ? "dark" : "light",
+      transitions: {
+        easing: {
+          easeIn: "1s",
+        },
+      },
+    },
+    transitions: {
+      easing: "easeOut",
+    },
+  });
+
+  //This will check the changes in dark state
+
+  useEffect(() => {}, []);
+
   //Note a a universal button needs to be passed so that the dark theme can be interchanged
 
   return (
-    <ThemeProvider theme={dark ? darkTheme : LightTheme}>
+    <ThemeProvider theme={preferTheme}>
       <Paper className={classes.root}>
         <Router>
-          <Nav />
+          <Nav dark={darkMode} setDark={setDark} />
           <View />
         </Router>
       </Paper>

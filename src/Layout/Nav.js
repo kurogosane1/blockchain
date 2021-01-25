@@ -9,6 +9,8 @@ import {
   Divider,
   List,
   makeStyles,
+  Avatar,
+  Grid,
 } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import HistoryIcon from "@material-ui/icons/History";
@@ -20,10 +22,20 @@ import EqualizerIcon from "@material-ui/icons/Equalizer";
 //This is for Themeing Purpose
 const useStyles = makeStyles({
   drawer: {
-    width: "10%",
+    width: "10vw",
+    marginLeft: "2rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  drawerPaper: {
+    width: "9vw",
+    padding: "0.5rem",
   },
   ListItems: {
     padding: "1rem",
+    justifyItems: "center",
+    alignItems: "center",
   },
 });
 
@@ -71,24 +83,43 @@ export default function Nav() {
     },
   ];
   return (
-    <Drawer anchor="left" variant="permanent" className={classes.drawer}>
-      <div />
-      <Divider />
-      <List>
-        {itemsList.map((item, index) => {
-          const { text, icon, onClick } = item;
-          return (
-            <ListItem
-              className={classes.ListItems}
-              button
-              key={text}
-              onClick={onClick}>
-              <ListItemIcon>{icon}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          );
-        })}
-      </List>
+    <Drawer
+      anchor="left"
+      variant="permanent"
+      classes={{ paper: classes.drawerPaper }}
+      className={classes.drawer}>
+      <div style={{ flexGrow: "0.98" }}>
+        <List>
+          <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+              <Avatar />
+            </ListItemAvatar>
+            <ListItemText
+              primary="UserName/Number"
+              secondary="Some thing else"
+            />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          {itemsList.map((item, index) => {
+            const { text, icon, onClick } = item;
+            return (
+              <ListItem
+                className={classes.ListItems}
+                button
+                key={text}
+                onClick={onClick}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            );
+          })}
+        </List>
+      </div>
+      <div>
+        <h2>This is the end side</h2>
+      </div>
     </Drawer>
   );
 }

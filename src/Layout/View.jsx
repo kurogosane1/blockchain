@@ -5,6 +5,7 @@ import HelpCenter from "../Pages/HelpCenter";
 import Main from "../Pages/Main";
 import Settings from "../Pages/Settings";
 import Invest from "../Pages/Invest";
+import Market from "../Pages/Market";
 
 export default function View() {
   //This where the components are being viewed at. So inorder for the components to show , then they must be entered here
@@ -24,6 +25,9 @@ export default function View() {
       </Route>
       <Route path="/Invest">
         <Invest style={{ minheight: "100vh" }} />
+      </Route>
+      <Route path="/Market">
+        <Market style={{ minheight: "100vh" }} />
       </Route>
     </Switch>
   );

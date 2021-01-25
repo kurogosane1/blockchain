@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+//Importing the required packages
+import { BrowserRouter as Router } from "react-router-dom";
+
+import "./App.css";
+import {
+  Paper,
+  makeStyles,
+  
+} from "@material-ui/core";
+import Nav from "./Layout/Nav";
+
+//This is for Themeing Purpose
+const useStyles = makeStyles({
+  root: {
+    minHeight: "100vh",
+  },
+});
 
 function App() {
+  //Bring ing in the theme from the useStyles outside the function
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Paper className={classes.root}>
+      <Router>
+        <Nav />
+      </Router>
+    </Paper>
   );
 }
 
